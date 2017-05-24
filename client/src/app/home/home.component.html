@@ -1,0 +1,68 @@
+<div>
+<!-- Navigation -->
+<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+
+      <a class="navbar-brand page-scroll" href="#page-top">Hi {{currentUser.firstName}}!!!</a>
+      <a class="navbar-brand page-scroll" href="#page-top">Welcome to ACTIVITY STREAM</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+          <a href="#page-top"></a>
+        </li>
+        <li>
+          <a href="circles.html"><i class="a fa-fw fa-circles-o"></i> Circles</a>
+          <!-- <a class="page-scroll" href="#circle">Cicles</a> -->
+        </li>
+        <li>
+          <a class="page-scroll" href="#contact">Contacts</a>
+        </li>
+        <li>
+          <a [routerLink] = "['/login']">Logout</a>
+        </li>
+
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+  <div class="row-fluid">
+
+    <div class="span2" style="background-color:grey;">
+      <h3>List of Registered Users</h3>
+    </div>
+
+    <div class="span10" style="background-color:#fff;">
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover table-striped">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>User Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of users">
+              <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td><a (click)="deleteUser(user.id)">Delete</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
