@@ -53,7 +53,7 @@
             </thead>
             <tbody *ngFor="let user of users">
               <tr>
-                <td>{{user.username}}</td>
+                <td>{{user.name}}</td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
                 <td><a (click)="deleteUser(user.id)">Delete</a></td>
