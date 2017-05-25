@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.stackroute.activitystream.users.User;
 import com.stackroute.activitystream.users.UserServiceImpl;
 
-@Controller
-@RequestMapping("users")
 @CrossOrigin(origins = "http://localhost:4200")
+@Controller
+@RequestMapping("users/")
 public class UserController {
 	
 	@Autowired
@@ -66,42 +66,14 @@ public class UserController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
     public ResponseEntity<User> login(@RequestParam(value="username") String username, @RequestParam(value="password") String password, UriComponentsBuilder builder) {
+		
 		boolean flag = userService.userValidate(username, password);
+		HttpHeaders headers = new HttpHeaders();
         if (flag == false) {
-        	return new ResponseEntity<User>(HttpStatus.FORBIDDEN);
+        	return new ResponseEntity<User>(HttpStatus.UNAUTHORIZED);
         }
-        HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<User>(headers, HttpStatus.ACCEPTED);
+        
+        User user = userService.getUserByName(username);
+        return new ResponseEntity<User>(user, headers, HttpStatus.ACCEPTED);
     }
 } 
-
-
-/*
-package com.stackroute.activitystream.users;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Collection;
-import java.util.stream.Collectors;
-
-@RestController
-public class UserController {
-
-	private UserRepository repository;
-
-    public UserController(UserRepository repository) {
-        this.repository = repository;
-    }
-
-    @GetMapping("/users")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public Collection<User> Users() {
-
-        return repository.findAll().stream()
-               .collect(Collectors.toList());
-    }
-
-}
-*/

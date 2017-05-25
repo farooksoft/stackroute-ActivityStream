@@ -21,6 +21,12 @@ public class UserService implements UserServiceImpl {
 	}
 	
 	@Override
+	public User getUserByName(String username) {
+		User obj = userDAO.getUserByName(username);
+		return obj;
+	}
+	
+	@Override
 	public List<User> getAllUsers(){
 		return userDAO.getAllUsers();
 	}
@@ -47,10 +53,13 @@ public class UserService implements UserServiceImpl {
 	
 	@Override
 	public boolean userValidate(String name, String password) {
+		
 		if (userDAO.userValidate(name, password)) {
-	    	   return true;
-	       } else {
-	    	   return false;
-	       }
+			return true;
+		} else {
+			return false;
+		}
+    
+		//return userDAO.userValidate(name, password);
 	}
 }

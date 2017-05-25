@@ -22,6 +22,12 @@ public class UserDAO implements UserDAOImpl {
 		return entityManager.find(User.class, userId);
 	}
 	
+	@Override
+	public User getUserByName(String username) {
+		String hql = "FROM User as usr WHERE usr.name = ?";
+		return (User) entityManager.createQuery(hql).setParameter(1, username).getResultList().get(0);
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getAllUsers() {
@@ -58,9 +64,11 @@ public class UserDAO implements UserDAOImpl {
 	@Override
 	public boolean userValidate(String name, String password) {
 		String hql = "FROM User as usr WHERE usr.name = ? and usr.password = ?";
+		
 		int count = entityManager.createQuery(hql).setParameter(1, name)
 					  .setParameter(2, password)
 		              .getResultList().size();
+		
 		return count > 0 ? true : false;
 	}
 }
