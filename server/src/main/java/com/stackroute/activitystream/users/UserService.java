@@ -33,7 +33,7 @@ public class UserService implements UserServiceImpl {
 	
 	@Override
 	public synchronized boolean addUser(User user){
-       if (userDAO.userExists(user.getName())) {
+       if (userDAO.userExists(user.getUsername())) {
     	   return false;
        } else {
     	   userDAO.addUser(user);
@@ -59,7 +59,5 @@ public class UserService implements UserServiceImpl {
 		} else {
 			return false;
 		}
-    
-		//return userDAO.userValidate(name, password);
 	}
 }

@@ -24,14 +24,14 @@ public class UserDAO implements UserDAOImpl {
 	
 	@Override
 	public User getUserByName(String username) {
-		String hql = "FROM User as usr WHERE usr.name = ?";
+		String hql = "FROM User as usr WHERE usr.username = ?";
 		return (User) entityManager.createQuery(hql).setParameter(1, username).getResultList().get(0);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getAllUsers() {
-		String hql = "FROM User as usr ORDER BY usr.userId";
+		String hql = "FROM User as usr ORDER BY usr.id";
 		return (List<User>) entityManager.createQuery(hql).getResultList();
 	}	
 	
@@ -43,8 +43,10 @@ public class UserDAO implements UserDAOImpl {
 	@Override
 	public void updateUser(User user) {
 		User newUser = getUserById(user.getId());
-		newUser.setName(user.getName());
+		newUser.setUserName(user.getUsername());
 		newUser.setEmail(user.getEmail());
+		newUser.setFirstname(user.getFirstname());
+		newUser.setLastname(user.getLastname());
 		entityManager.flush();
 	}
 	
@@ -54,18 +56,18 @@ public class UserDAO implements UserDAOImpl {
 	}
 	
 	@Override
-	public boolean userExists(String name) {
-		String hql = "FROM User as usr WHERE usr.name = ?";
-		int count = entityManager.createQuery(hql).setParameter(1, name)
+	public boolean userExists(String username) {
+		String hql = "FROM User as usr WHERE usr.username = ?";
+		int count = entityManager.createQuery(hql).setParameter(1, username)
 		              .getResultList().size();
 		return count > 0 ? true : false;
 	}
 	
 	@Override
-	public boolean userValidate(String name, String password) {
-		String hql = "FROM User as usr WHERE usr.name = ? and usr.password = ?";
+	public boolean userValidate(String username, String password) {
+		String hql = "FROM User as usr WHERE usr.username = ? and usr.password = ?";
 		
-		int count = entityManager.createQuery(hql).setParameter(1, name)
+		int count = entityManager.createQuery(hql).setParameter(1, username)
 					  .setParameter(2, password)
 		              .getResultList().size();
 		

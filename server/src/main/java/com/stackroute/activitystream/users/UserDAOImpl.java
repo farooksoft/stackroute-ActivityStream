@@ -10,6 +10,6 @@ public interface UserDAOImpl{
     void addUser(User user);
     void updateUser(User user);
     void deleteUser(Long userId);
-    boolean userExists(String title);
-    boolean userValidate(String name, String password);
+    boolean userExists(String username);
+    boolean userValidate(String username, String password);
 }
