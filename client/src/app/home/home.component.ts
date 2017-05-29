@@ -2,10 +2,13 @@
 
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
+//import '../assets/home.css';
 
 @Component({
     moduleId: module.id.toString(),
-    templateUrl: 'home.component.html'
+    selector:'home',
+    templateUrl: 'home.component.html',
+    
 })
 
 export class HomeComponent implements OnInit {
