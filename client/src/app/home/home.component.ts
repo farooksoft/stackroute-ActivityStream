@@ -2,6 +2,8 @@
 
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
+import { Circle } from '../_models/index';
+import { CircleService } from '../_services/index';
 //import '../assets/home.css';
 
 @Component({
@@ -14,13 +16,15 @@ import { UserService } from '../_services/index';
 export class HomeComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
+    circles: Circle[] = [];
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private circleService: CircleService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
         this.loadAllUsers();
+        this.loadAllCircles();
     }
 
     deleteUser(id: number) {
@@ -29,5 +33,9 @@ export class HomeComponent implements OnInit {
 
     private loadAllUsers() {
         this.userService.getAll().subscribe(users => { this.users = users._embedded.users; });
+    }
+
+    private loadAllCircles() {
+        this.circleService.getAll().subscribe(circles => { this.circles = circles; });
     }
 }
