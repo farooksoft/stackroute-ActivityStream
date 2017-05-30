@@ -17,6 +17,7 @@ import { AlertService, AuthenticationService, UserService, CircleService } from 
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
+import { CircleComponent } from './circle/index';
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { RegisterComponent } from './register/index';
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        CircleComponent
     ],
     providers: [
         AuthGuard,

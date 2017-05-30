@@ -8,7 +8,6 @@
 						<!-- Brand and toggle get grouped for better mobile display -->
 						<div class="navbar-header page-scroll">
 
-							<a class="navbar-brand page-scroll" href="#page-top">Hi {{currentUser.username}}!!!</a>
 							<a class="navbar-brand page-scroll" href="#page-top">Welcome
 								to ACTIVITY STREAM</a>
 						</div>
@@ -16,18 +15,20 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse"
 							id="bs-example-navbar-collapse-1">
-
 							<div class="collapse navbar-collapse"
 								id="bs-example-navbar-collapse-1">
-
-
 								<ul class="nav navbar-nav navbar-right">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
-										data-toggle="dropdown">Logged in as: {{currentUser.username}}<strong class="caret"></strong></a>
+										data-toggle="dropdown">Hi: {{currentUser.username}}<strong
+											class="caret"></strong>
+									</a>
 										<ul class="dropdown-menu">
-											<li><a href="#">Profile</a></li>
+											<li><span class="glyphicon glyphicon-user"><a
+													href="#"> Profile</a></span></li>
 											<li><a href="#">Circles</a></li>
-											<li><a [routerLink]="['/login']">Logout</a></li>
+											<li class="divider dropdown-divider"></li>
+											<li><span class="glyphicon glyphicon-log-out"><a
+													[routerLink]="['/login']"> Logout</a></span></li>
 										</ul></li>
 								</ul>
 							</div>
@@ -39,46 +40,50 @@
 			</nav>
 		</div>
 	</div>
-	<div class="row">
+	<div class="container-fluid">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-3">
-					<h2>
+					<h4>
 						<small>Registered Users</small>
-					</h2>
+					</h4>
 					<div>
 						<ul *ngFor="let user of users">
-							<li>{{user.username}}</li>
+							<span class="glyphicon glyphicon-user"> {{user.username}}</span>
 						</ul>
 					</div>
+					<hr>
+
+
+
 					<ul class="nav nav-pills nav-stacked">
-						<li class="active"><a href="#" ng-click="ctrl.getUserHome()">All
-								Circles</a></li>
-						<!--
-						<div *ngFor="let circle of circles">
-							{{ $index + 1 }} . <a href="#"
-								ng-click="ctrl.getMyCircleMessages(circle)"> {{circle.circlename}}</a>
-						</div>
-							-->
-						<div>
-							<ul *ngFor="let circle of circles">
-								<li><a href="#"
-								ng-click="ctrl.getMyCircleMessages(circle)"> {{circle.circlename}}</a></li>
-							</ul>
-						</div>
-						<br>
-
-
-						<h2>
-							<small>My Circles</small>
-						</h2>
-						<div *ngFor="let circle of circles">
-							{{ $index + 1 }} . <a href="#"
-								ng-click="ctrl.getMyCircleMessages(circle)"> {{circle.circlename}}</a>
-						</div>
-					</ul>
+						<ul class="dropdown">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">All Circles<strong
+								class="caret"></strong>
+						</a>
+							<ul class="dropdown-menu">
+								<li *ngFor="let user of users"><a href="#" ng-click="ctrl.getMyCircleMessages(users)">
+								{{user.username}}</a>
+								
+							</ul></li>
+						</ul>
+					
+					<ul class="dropdown">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">My Circles<strong
+								class="caret"></strong>
+						</a>
+							<ul class="dropdown-menu">
+								<li *ngFor="let user of users"><a href="#" ng-click="ctrl.getMyCircleMessages(users)">
+								{{user.username}}</a>
+								
+							</ul></li>
+						</ul>
+</ul>
+   					
 					<br>
-
+					<hr>
 					<div class="input-group">
 						<input type="text" class="form-control"
 							placeholder="Search Circle.."> <span
@@ -93,18 +98,20 @@
 				<div class="col-md-6">
 					<div class="panel-body">
 						<h4>
-							<small>RECENT POSTS</small>
+							<small>Recent Messages</small>
 						</h4>
 						<hr>
-						<ul>
-							<li>Message 1			Time</li>
-							<li>Message 2			Time</li>
-							<li>Message 3			Time</li>
-							<li>Message 4			Time</li>
+						<ul *ngFor="let user of users">
+							<li><h5>
+									<span class="label label-success">Sender: {{user.email}}</span>
+								</h5></li>
+							<span class="glyphicon glyphicon-envelope"> {{user.email}}</span>
+							<span class="glyphicon glyphicon-time"> PostedDate</span>
 						</ul>
-						<h3>
+						<hr>
+						<h4>
 							<small>Compose Message</small>
-						</h3>
+						</h4>
 						<form role="form">
 							<div class="form-group">
 								<textarea class="form-control" rows="1" required></textarea>
@@ -112,7 +119,7 @@
 							<button type="submit" class="btn btn-success">Send</button>
 						</form>
 
-						<div class="table-responsive">
+						<!-- <div class="table-responsive">
 
 							<h3>
 								<small>My Inbox</small>
@@ -138,7 +145,7 @@
 									</tr>
 								</tbody>
 							</table>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
