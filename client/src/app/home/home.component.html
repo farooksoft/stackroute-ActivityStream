@@ -44,46 +44,71 @@
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-3">
-					<h4>
-						<small>Registered Users</small>
-					</h4>
-					<div>
-						<ul *ngFor="let user of users">
-							<span class="glyphicon glyphicon-user"> {{user.username}}</span>
-						</ul>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="btn-group">
+
+									<button class="btn btn-default">Registered Users</button>
+									<button data-toggle="dropdown"
+										class="btn btn-default dropdown-toggle">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li *ngFor="let user of users"><span class="glyphicon glyphicon-user"> {{user.username}}</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
 					</div>
 					<hr>
 
 
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="btn-group">
 
-					<ul class="nav nav-pills nav-stacked">
-						<ul class="dropdown">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">All Circles<strong
-								class="caret"></strong>
-						</a>
-							<ul class="dropdown-menu">
-								<li *ngFor="let user of users"><a href="#" ng-click="ctrl.getMyCircleMessages(users)">
-								{{user.username}}</a>
-								
-							</ul></li>
-						</ul>
+									<button class="btn btn-default">All Circles</button>
+									<button data-toggle="dropdown"
+										class="btn btn-default dropdown-toggle">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li *ngFor="let user of users"><a href="#"
+										ng-click="ctrl.getMyCircleMessages(users)">
+											{{user.username}}</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+						<hr>
+<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="btn-group">
+
+									<button class="btn btn-default">My Circles</button>
+									<button data-toggle="dropdown"
+										class="btn btn-default dropdown-toggle">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li *ngFor="let user of users"><a href="#"
+										ng-click="ctrl.getMyCircleMessages(users)">
+											{{user.username}}</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+<hr>
+
+
+
 					
-					<ul class="dropdown">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">My Circles<strong
-								class="caret"></strong>
-						</a>
-							<ul class="dropdown-menu">
-								<li *ngFor="let user of users"><a href="#" ng-click="ctrl.getMyCircleMessages(users)">
-								{{user.username}}</a>
-								
-							</ul></li>
-						</ul>
-</ul>
-   					
-					<br>
-					<hr>
 					<div class="input-group">
 						<input type="text" class="form-control"
 							placeholder="Search Circle.."> <span
