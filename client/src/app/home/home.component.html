@@ -155,20 +155,21 @@
 							<small>Recent Messages</small>
 						</h4>
 						<hr>
-						<ul *ngFor="let user of users">
+						<ul *ngFor="let message of messages">
 							<li><h5>
-									<span class="label label-success">Sender: {{user.email}}</span>
-								</h5></li>
-							<span class="glyphicon glyphicon-envelope"> {{user.email}}</span>
-							<span class="glyphicon glyphicon-time"> PostedDate</span>
+									<span class="label label-success">Sender: {{message.senderid}}</span>
+								</h5>
+							<span class="glyphicon glyphicon-envelope"> {{message.msgtext}}</span>
+							<span class="glyphicon glyphicon-time">{{message.createddate}}</span>
+							</li>
 						</ul>
 						<hr>
 						<h4>
 							<small>Compose Message</small>
 						</h4>
-						<form role="form">
-							<div class="form-group">
-								<textarea class="form-control" rows="1" required></textarea>
+						<form role="form" name="form" (ngSubmit)="f.form.valid && sendMessage()" #f="ngForm" novalidate>
+						 	<div class="form-group">
+								<textarea name="msgtext" class="form-control" rows="1" [(ngModel)]="newMessage.msgtext" msgtext="ngModel" required></textarea>
 							</div>
 							<button type="submit" class="btn btn-success">Send</button>
 						</form>
