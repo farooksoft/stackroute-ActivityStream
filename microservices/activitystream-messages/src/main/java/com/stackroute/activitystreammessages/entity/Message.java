@@ -62,8 +62,8 @@ public class Message implements Serializable {
 		return circleId;
 	}
 
-	public void setCircleid(Long circleid) {
-		this.circleId = circleid;
+	public void setCircleid(Long circleId) {
+		this.circleId = circleId;
 	}
 	
 	public String getMsgtype() {

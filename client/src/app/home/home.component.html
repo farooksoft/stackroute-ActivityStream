@@ -100,9 +100,9 @@
 									<ul class="dropdown-menu">
 										<li><a href="circle.component.html">Create Circle</a></li>
 										<li class="divider dropdown-divider"></li>
-										<li *ngFor="let user of users"><a href="#"
-											ng-click="ctrl.getMyCircleMessages(users)">
-												{{user.username}}</a></li>
+										<li *ngFor="let circle of circles"><a href="#"
+											ng-click="ctrl.getMyCircleMessages(circle)">
+												{{circle.circlename}}</a></li>
 
 									</ul>
 								</div>
@@ -123,9 +123,9 @@
 									<ul class="dropdown-menu">
 										<li><a href="circle.component.html">Create Circle</a></li>
 										<li class="divider dropdown-divider"></li>
-										<li *ngFor="let user of users"><a href="#"
-											ng-click="ctrl.getMyCircleMessages(users)">
-												{{user.username}}</a></li>
+										<li *ngFor="let circle of circles"><a href="#"
+											ng-click="ctrl.getMyCircleMessages(circle)">
+												{{circle.circlename}}</a></li>
 
 									</ul>
 								</div>

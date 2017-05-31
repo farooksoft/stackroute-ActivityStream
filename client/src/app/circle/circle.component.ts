@@ -7,5 +7,11 @@ import { Component, OnInit} from '@angular/core';
 })
 
 export class CircleComponent implements OnInit{
-    
+    constructor() {
+        
+    }
+
+    ngOnInit() {
+        
+    }
 }
