@@ -22,7 +22,7 @@ import com.stackroute.activitystreamcircles.service.CircleService;
 import com.stackroute.activitystreamcircles.entity.UserCircle;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("circles/")
 public class CircleController {
 
 	@Autowired

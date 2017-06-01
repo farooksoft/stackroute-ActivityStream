@@ -158,7 +158,7 @@
 									<span class="label label-success">Sender: {{message.senderid}}</span>
 								</h5>
 							<span class="glyphicon glyphicon-envelope"> {{message.msgtext}}</span>
-							<span class="glyphicon glyphicon-time">{{message.createddate}}</span>
+							<span class="glyphicon glyphicon-time">{{message.createddate | date:'medium'}}</span>
 							</li>
 						</ul>
 						<hr>

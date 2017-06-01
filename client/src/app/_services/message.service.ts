@@ -16,7 +16,7 @@ export class MessageService {
     }
 
     create(message: Message) {
-        return this.http.post('http://localhost:8890/message/', message, this.jwt()).map((response: Response) => response.json());
+        return this.http.post('http://localhost:8890/messages/', message, this.jwt()).map((response: Response) => response.json());
     }
 
     update(message: Message) {

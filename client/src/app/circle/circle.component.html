@@ -1,30 +1,27 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<form role="form">
+			<form role="form" name="form" (ngSubmit)="f.form.valid && addCircle()" #f="ngForm" novalidate>
 				<div class="form-group">
 					<h1>
 						<p class="text-center">Circle</p>
 					</h1>
-
-
 					<h2>
 						<small>Circle Name</small>
 					</h2>
 					<input class="form-control" Placeholder="Circle Name"
-						id="exampleInputEmail1" type="email" />
+						id="circlename" type="text" name="circlename" [(ngModel)]="newCircle.circlename" #circlename="ngModel" required/>
+					<div *ngIf="f.submitted && !circlename.valid" class="help-block">Circle Name is required</div>
 				</div>
 				<div class="form-group">
-
 					<h2>
 						<small>Circle Description</small>
 					</h2>
-					<input class="form-control" Placeholder="Description"
-						id="exampleInputEmail1" type="email" />
+					<input class="form-control" Placeholder="Circle Description"
+						id="circledescr" type="text" name="circledescr" [(ngModel)]="newCircle.circledescr" #circledescr="ngModel" required/>
 				</div>
 
 				<div class="form-group">
-
 					<h2>
 						<small>Add Users to Circle</small>
 					</h2>
@@ -33,10 +30,11 @@
 				</div>
 
 				<div>
-					<label for="id_label_multiple"> Click users to add in Circle <select
-						class="js-example-basic-multiple js-states form-control"
-						id="id_label_multiple" multiple="multiple"></select>
-					</label>
+					<label for="id_label_multiple"> Click users to add in Circle </label>
+						<select [(ngModel)]="users.id" 	class="js-example-basic-multiple js-states form-control"
+						id="id-label-multiple" multiple="multiple" name="selectusers">
+                		<option *ngFor="let user of users" [value]="user.id">{{user.username}}</option>
+                		</select>
 				</div>
 				<button type="submit" class="btn btn-default">Create Circle	</button>
 				<a [routerLink]="['/home']" class="btn btn-link">Home</a>

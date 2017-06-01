@@ -14,6 +14,7 @@ import { UserService, CircleService, MessageService, AlertService } from '../_se
 
 export class HomeComponent implements OnInit {
     currentUser: User;
+    currentCircle: Circle;
     users: User[] = [];
     circles: Circle[] = [];
     messages: Message[] = [];
@@ -26,6 +27,8 @@ export class HomeComponent implements OnInit {
         private messageService: MessageService,
         private alertService: AlertService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.currentCircle = new Circle;
+        this.currentCircle.id = 1;
     }
 
     ngOnInit() {
@@ -43,7 +46,7 @@ export class HomeComponent implements OnInit {
     }
 
     private loadAllCircles() {
-        this.circleService.getAll().subscribe(circles => { this.circles = circles; });
+        this.circleService.getAll().subscribe(circles => { this.circles = circles._embedded.circles; });
     }
 
     private loadAllMessages() {
@@ -51,19 +54,18 @@ export class HomeComponent implements OnInit {
     }
 
     private sendMessage() {
-        this.newMessage.senderid = 1;
-        this.newMessage.circleid = 1;
+        this.newMessage.senderid = this.currentUser.id;
+        this.newMessage.circleid = this.currentCircle.id;
         this.newMessage.msgtype = 'text';
-        this.newMessage.createddate = 1496048341709;
+        this.newMessage.createddate = new Date().getTime();
 
          this.messageService.create(this.newMessage)
             .subscribe(
                 data => {
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/home']);
                 },
                 error => {
-                    //this.alertService.error(error);
-                    this.router.navigate(['/']);
+                    this.alertService.error(error);
                 });
     }
 }

@@ -19,7 +19,7 @@ import com.stackroute.activitystreammessages.service.MessageService;
 import com.stackroute.activitystreammessages.entity.Message;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("messages/")
 public class MessageController {
 
 	@Autowired
