@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>activitystream-messages</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Activity stream - Microsevice for messages entity</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

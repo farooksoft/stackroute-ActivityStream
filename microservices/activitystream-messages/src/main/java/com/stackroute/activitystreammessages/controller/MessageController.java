@@ -36,6 +36,18 @@ public class MessageController {
 		List<Message> list = messageService.getAllMessages();
 		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
 	}
+	/*
+	@RequestMapping(value = "/messages", method = RequestMethod.GET)
+	public ResponseEntity<List<Message>> getMessageByCircle(@RequestParam(value="circleid") Long circleId) {
+		List<Message> messagelist = messageService.getMessageByCircle(circleId);
+		return new ResponseEntity<List<Message>>(messagelist, HttpStatus.OK);
+	}
+	*/
+	@GetMapping("/message/circle/{circleId}")
+	public ResponseEntity<List<Message>> getMessageByCircle(@PathVariable("circleId") Long circleId) {
+		List<Message> messagelist = messageService.getMessageByCircle(circleId);
+		return new ResponseEntity<List<Message>>(messagelist, HttpStatus.OK);
+	}
 	
 	@PostMapping("message")
 	public ResponseEntity<Void> addMessage(@RequestBody Message message, UriComponentsBuilder builder) {

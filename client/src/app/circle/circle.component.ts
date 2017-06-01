@@ -35,4 +35,5 @@ export class CircleComponent implements OnInit {
         this.circleService.getAll().subscribe( circles => { this.circles = circles; } );
     }
 
+
 }

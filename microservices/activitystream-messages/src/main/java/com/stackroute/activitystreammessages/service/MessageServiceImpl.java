@@ -30,6 +30,12 @@ public class MessageServiceImpl implements MessageService {
 		List<Message> obj = messageDAO.getMessageBySender(senderId);
 		return obj;
 	}
+	
+	@Override
+	public List<Message> getMessageByCircle(Long circleId) {
+		List<Message> obj = messageDAO.getMessageByCircle(circleId);
+		return obj;
+	}
 
 	@Override
 	public boolean addMessage(Message message) {
