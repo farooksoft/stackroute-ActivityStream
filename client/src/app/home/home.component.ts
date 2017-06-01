@@ -28,13 +28,11 @@ export class HomeComponent implements OnInit {
         private alertService: AlertService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.currentCircle = new Circle;
-        this.currentCircle.id = 1;
     }
 
     ngOnInit() {
         this.loadAllUsers();
         this.loadAllCircles();
-        this.loadAllMessages();
     }
 
     deleteUser(id: number) {
@@ -46,11 +44,24 @@ export class HomeComponent implements OnInit {
     }
 
     private loadAllCircles() {
-        this.circleService.getAll().subscribe(circles => { this.circles = circles._embedded.circles; });
+
+        this.circleService.getAll().subscribe(circles => { 
+            this.circles = circles._embedded.circles; 
+            if (this.currentCircle == null) { 
+                this.currentCircle = this.circles[0]; 
+                this.loadMessagesByCircle(this.currentCircle);
+            } 
+        });
     }
 
     private loadAllMessages() {
         this.messageService.getAll().subscribe(messages => { this.messages = messages._embedded.messages; });
+    }
+
+    private loadMessagesByCircle(circle: Circle) {
+
+        this.currentCircle = circle;
+        this.messageService.getMessageByCircle(circle.id).subscribe(messages => { this.messages = messages; });
     }
 
     private sendMessage() {

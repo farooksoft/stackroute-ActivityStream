@@ -28,7 +28,7 @@ return this.http.put('http://localhost:8890/message/' + message.id, message, thi
     }
 
     getMessageByCircle(circleid: number) {
-        return this.http.get('http://localhost:8890/message/circle' + circleid, this.jwt()).map((response: Response) => response.json());
+        return this.http.get('http://localhost:8890/message/circle/' + circleid, this.jwt()).map((response: Response) => response.json());
     }
 
     // private helper methods

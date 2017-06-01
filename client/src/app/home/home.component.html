@@ -114,7 +114,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="btn-group">
+								<div class="dropdown">
 
 									<button class="btn btn-default">My Circles</button>
 									<button data-toggle="dropdown"
@@ -126,10 +126,8 @@
 										<li><a href="circle.component.html">Create Circle</a></li>
 										<li class="divider dropdown-divider"></li>
 										<li *ngFor="let circle of circles"><a href="#"
-											ng-click="ctrl.getMyCircleMessages(circle)">
+											(click)="loadMessagesByCircle(circle)">
 												{{circle.circlename}}</a></li>
-
-
 									</ul>
 								</div>
 							</div>
