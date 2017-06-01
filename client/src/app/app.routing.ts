@@ -10,6 +10,7 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'home', component: HomeComponent},
     { path: 'circle', component:CircleComponent},
 
     // otherwise redirect to home
