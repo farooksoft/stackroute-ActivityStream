@@ -123,9 +123,9 @@
 									</button>
 									<ul class="dropdown-menu">
 
-										<li><a href="circle.component.html">Create Circle</a></li>
+										<li><a [routerLink]="['/circle']">Create Circle</a></li>
 										<li class="divider dropdown-divider"></li>
-										<li *ngFor="let circle of circles"><a href="#"
+										<li *ngFor="let circle of mycircles"><a href="#"
 											(click)="loadMessagesByCircle(circle)">
 												{{circle.circlename}}</a></li>
 									</ul>
@@ -148,9 +148,10 @@
 				<div class="col-md-6">
 					<div class="panel-body">
 						<h4>
-							<small>Recent Messages</small>
+							<p class="glyphicon glyphicon-inbox"> {{currentCircle.circlename}}</p>
 						</h4>
 						<hr>
+						<!--
 						<ul *ngFor="let message of messages">
 							<li><h5>
 									<span class="label label-success">Sender: {{message.senderid}}</span>
@@ -159,6 +160,22 @@
 							<span class="glyphicon glyphicon-time">{{message.createddate | date:'medium'}}</span>
 							</li>
 						</ul>
+						-->
+						<ul *ngFor="let message of messages">
+						<li>
+						<div class="list-group">
+						  <a href="#" class="list-group-item">
+						  	<!--
+						    <h4 class="list-group-item-heading">{{getUsername(message.senderid)}}</h4>
+							-->
+							<span class="glyphicon glyphicon-user"> {{getUsername(message.senderid)}}</span>
+						    <p class="list-group-item-text">{{message.msgtext}}</p>
+						    <span class="glyphicon glyphicon-time"> {{message.createddate | date:'dd MMM, hh:mm:ss a'}}</span>
+						  </a>
+						</div>
+						</li>
+						</ul>
+
 						<hr>
 						<h4>
 							<small>Compose Message</small>
@@ -167,7 +184,7 @@
 						 	<div class="form-group">
 								<textarea name="msgtext" class="form-control" rows="1" [(ngModel)]="newMessage.msgtext" msgtext="ngModel" required></textarea>
 							</div>
-							<button type="submit" class="btn btn-success">Send</button>
+							<button class="btn btn-success">Send</button>
 						</form>
 
 						<div class="table-responsive">

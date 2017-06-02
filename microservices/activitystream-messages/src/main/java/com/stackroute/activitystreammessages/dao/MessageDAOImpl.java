@@ -38,7 +38,7 @@ public class MessageDAOImpl implements MessageDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Message> getMessageByCircle(Long circleId) {
-		String hql = "FROM Message as msg WHERE msg.circleId = ?";
+		String hql = "FROM Message as msg WHERE msg.circleId = ? ORDER BY msg.createddate DESC";
 		return (List<Message>) entityManager.createQuery(hql).setParameter(1, circleId).getResultList();
 	}
 

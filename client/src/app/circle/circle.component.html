@@ -20,19 +20,11 @@
 					<input class="form-control" Placeholder="Circle Description"
 						id="circledescr" type="text" name="circledescr" [(ngModel)]="newCircle.circledescr" #circledescr="ngModel" required/>
 				</div>
-
-				<div class="form-group">
-					<h2>
-						<small>Add Users to Circle</small>
-					</h2>
-					<input class="form-control" Placeholder="Add Users to circle"
-						id="exampleInputEmail1" type="email" />
-				</div>
-
+				
 				<div>
 					<label for="id_label_multiple"> Click users to add in Circle </label>
-						<select [(ngModel)]="users.id" 	class="js-example-basic-multiple js-states form-control"
-						id="id-label-multiple" multiple="multiple" name="selectusers">
+						<select [(ngModel)]="userslistselected" 	class="js-example-basic-multiple js-states form-control"
+						id="id-label-multiple" multiple="multiple" name="userslistselected">
                 		<option *ngFor="let user of users" [value]="user.id">{{user.username}}</option>
                 		</select>
 				</div>

@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     currentCircle: Circle;
     users: User[] = [];
     circles: Circle[] = [];
+    mycircles: Circle[] = [];
     messages: Message[] = [];
     newMessage: any = {};
 
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.loadAllUsers();
         this.loadAllCircles();
+        this.loadMyCircles();
     }
 
     deleteUser(id: number) {
@@ -54,6 +56,30 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    private loadMyCircles() {
+
+        this.circleService.getcirclesbyuser(this.currentUser).subscribe(usercircles => { 
+            let globalcircles = this.circles; 
+            if(this.circles.length > 0) {
+                for (let i=0; i < usercircles.length; i++) {
+                    for(let j=0; j < globalcircles.length; j++) {
+                        if(usercircles[i].circleid = globalcircles[j].id) {
+                            this.mycircles.push(globalcircles[j]);
+                            break;
+                        }
+                    }
+                }
+            }
+            else {
+                for (let i=0; i < usercircles.length; i++) {
+                    this.circleService.getById(usercircles[i].circleId).subscribe(circle => { 
+                        this.mycircles.push(circle);
+                    });
+                }
+            }
+        });
+    }
+    
     private loadAllMessages() {
         this.messageService.getAll().subscribe(messages => { this.messages = messages._embedded.messages; });
     }
@@ -78,5 +104,13 @@ export class HomeComponent implements OnInit {
                 error => {
                     this.alertService.error(error);
                 });
+    }
+
+    private getUsername(userid: number):any {
+        for (let user of this.users) {
+            if(userid == user.id) {
+                return user.username;
+            }
+        }
     }
 }

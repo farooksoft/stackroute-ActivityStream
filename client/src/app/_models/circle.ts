@@ -5,3 +5,9 @@ export class Circle {
     status: string;
     createddate: string;
 }
+
+export class UserCircle {
+    id: number;
+    userid: number;
+    circleid: number;
+}
