@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
 
         this.currentCircle = JSON.parse(localStorage.getItem('currentCircle'));
 
-        let timer = Observable.timer(2000,2000);
+        let timer = Observable.timer(2000,1000);
         timer.subscribe(t=> {
             this.loadMessagesByCircle(this.currentCircle);
         });
@@ -110,7 +110,6 @@ export class HomeComponent implements OnInit {
          this.messageService.create(this.newMessage)
             .subscribe(
                 data => {
-                    this.alertService.success('Message sent successful', true);
                     this.newMessage.msgtext = "";
                     this.router.navigate(['/home']);
                 },
