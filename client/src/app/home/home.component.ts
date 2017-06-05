@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {Observable} from 'rxjs/Rx';
 
 import { User, Circle, Message } from '../_models/index';
 import { UserService, CircleService, MessageService, AlertService } from '../_services/index';
@@ -35,6 +36,13 @@ export class HomeComponent implements OnInit {
         this.loadAllUsers();
         this.loadAllCircles();
         this.loadMyCircles();
+
+        this.currentCircle = JSON.parse(localStorage.getItem('currentCircle'));
+
+        let timer = Observable.timer(2000,2000);
+        timer.subscribe(t=> {
+            this.loadMessagesByCircle(this.currentCircle);
+        });
     }
 
     deleteUser(id: number) {
@@ -48,11 +56,7 @@ export class HomeComponent implements OnInit {
     private loadAllCircles() {
 
         this.circleService.getAll().subscribe(circles => { 
-            this.circles = circles._embedded.circles; 
-            if (this.currentCircle == null) { 
-                this.currentCircle = this.circles[0]; 
-                this.loadMessagesByCircle(this.currentCircle);
-            } 
+            this.circles = circles._embedded.circles;
         });
     }
 
@@ -77,6 +81,12 @@ export class HomeComponent implements OnInit {
                     });
                 }
             }
+
+            if (this.currentCircle == null) { 
+                this.currentCircle = this.mycircles[0]; 
+                localStorage.setItem('currentCircle', JSON.stringify(this.currentCircle));
+                this.loadMessagesByCircle(this.currentCircle);
+            }
         });
     }
     
@@ -87,6 +97,7 @@ export class HomeComponent implements OnInit {
     private loadMessagesByCircle(circle: Circle) {
 
         this.currentCircle = circle;
+        localStorage.setItem('currentCircle', JSON.stringify(this.currentCircle));
         this.messageService.getMessageByCircle(circle.id).subscribe(messages => { this.messages = messages; });
     }
 
