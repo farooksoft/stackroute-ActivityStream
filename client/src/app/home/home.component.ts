@@ -110,6 +110,8 @@ export class HomeComponent implements OnInit {
          this.messageService.create(this.newMessage)
             .subscribe(
                 data => {
+                    this.alertService.success('Message sent successful', true);
+                    this.newMessage.msgtext = "";
                     this.router.navigate(['/home']);
                 },
                 error => {
